@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "PhishShield Training"
+version = "1.0.0"
+id = "artifacts/phish-shield"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26183
+
+[services.development]
+run = "pnpm --filter @workspace/phish-shield run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/phish-shield", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/phish-shield/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26183"
+BASE_PATH = "/"
