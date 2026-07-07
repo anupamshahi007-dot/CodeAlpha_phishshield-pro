@@ -44,6 +44,12 @@ Thumbs.db
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
-# Replit
+# Replit-specific (not needed outside Replit)
 .cache/
 .local/
+.agents/
+.replit
+.replitignore
+replit.md
+artifacts/*/.replit-artifact/
+attached_assets/
