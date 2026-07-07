@@ -48,10 +48,13 @@ export function DomainRecon() {
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
       >
-        <h2 className="font-orbitron text-3xl md:text-4xl text-white mb-4">
-          <span className="text-text-muted mr-3">[02]</span>DOMAIN RECONNAISSANCE
+        <div className="font-mono text-xs tracking-[0.2em] text-neon-cyan uppercase mb-2 section-label">
+          [02] Domain Recon
+        </div>
+        <h2 className="font-sans font-bold text-2xl text-white mt-1 mb-3">
+          DOMAIN RECONNAISSANCE
         </h2>
-        <p className="text-text-main max-w-3xl text-lg">
+        <p className="text-text-muted text-sm leading-relaxed max-w-3xl">
           Transport-layer handshakes (HTTPS padlocks) merely encrypt streams — they do not validate ownership matrix. Decouple domain structures below to scan for spoof variants.
         </p>
       </motion.div>
@@ -61,10 +64,10 @@ export function DomainRecon() {
           const isRevealed = revealed.includes(domain.id);
           const colorClass = isRevealed 
             ? (domain.safe 
-                ? 'border-neon-green shadow-[0_0_20px_rgba(0,255,102,0.15)] bg-neon-green/5' 
-                : 'border-neon-red shadow-[0_0_20px_rgba(255,0,85,0.15)] bg-neon-red/5'
+                ? 'bg-bg-card border border-neon-green/40 rounded-lg' 
+                : 'bg-bg-card border border-neon-red/40 rounded-lg'
               )
-            : 'border-text-muted/30 bg-bg-surface hover:border-text-muted/60 cursor-pointer';
+            : 'bg-bg-card card-border border border-white/7 rounded-lg cursor-pointer hover:border-neon-cyan/30 hover:bg-neon-cyan/[0.02] transition-all duration-200';
 
           return (
             <motion.div 
@@ -74,26 +77,31 @@ export function DomainRecon() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
               onClick={() => toggleDomain(domain.id)}
-              className={`p-6 md:p-8 rounded border transition-all duration-500 font-mono flex flex-col justify-center min-h-[160px] ${colorClass}`}
+              className={`p-6 md:p-8 flex flex-col justify-center min-h-[160px] ${colorClass}`}
             >
               <div className="flex items-center gap-4 text-lg md:text-xl mb-2">
-                <span className={isRevealed ? (domain.safe ? 'text-neon-green drop-shadow-[0_0_8px_rgba(0,255,102,0.8)]' : 'text-neon-red drop-shadow-[0_0_8px_rgba(255,0,85,0.8)]') : 'text-text-muted'}>
+                <span className={isRevealed ? (domain.safe ? 'text-neon-green' : 'text-neon-red') : 'text-text-muted'}>
                   🔒
                 </span>
-                <span className={`break-all ${isRevealed ? (domain.safe ? 'text-neon-green' : 'text-neon-red') : 'text-white'}`}>
+                <span className={`break-all font-mono text-sm ${isRevealed ? (domain.safe ? 'text-neon-green font-semibold' : 'text-neon-red font-semibold') : 'text-text-main'}`}>
                   https://{domain.url}
                 </span>
+                {isRevealed && (
+                  <span className={`ml-auto font-sans font-bold text-sm ${domain.safe ? 'text-neon-green' : 'text-neon-red'}`}>
+                    {domain.safe ? '✓ SAFE' : '⚠ UNSAFE'}
+                  </span>
+                )}
               </div>
               
               <div className={`overflow-hidden transition-all duration-500 origin-top ${isRevealed ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0'}`}>
-                <div className="pt-4 border-t border-current/20">
-                  <strong className="block mb-2 tracking-wider uppercase text-sm md:text-base">{domain.title}</strong>
+                <div className="pt-4 border-t border-slate-800/60">
+                  <strong className="block mb-2 font-mono text-xs text-text-muted uppercase">{domain.title}</strong>
                   <span className="text-sm text-text-main font-sans leading-relaxed block">{domain.desc}</span>
                 </div>
               </div>
               
               {!isRevealed && (
-                <div className="text-xs text-text-muted mt-4 animate-pulse uppercase tracking-widest">
+                <div className="font-mono text-xs text-text-muted/60 mt-4">
                   &gt; Click to decouple node...
                 </div>
               )}

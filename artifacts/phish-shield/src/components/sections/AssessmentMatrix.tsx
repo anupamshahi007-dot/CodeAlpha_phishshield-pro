@@ -140,9 +140,24 @@ export function AssessmentMatrix() {
   };
 
   const getResultInfo = () => {
-    if (score >= 9) return { title: 'NODE OPTIMIZED // EXCELLENT CLEARANCE', desc: 'Your cognitive filter arrays are successfully isolating high-sophistication adversarial patterns. Maintain this level of telemetry tracking on operational streams.', color: 'text-neon-cyan' };
-    if (score >= 7) return { title: 'DEGRADED STATE // STABLE READINGS', desc: 'Logic engine processed most standard vulnerabilities successfully. Re-verify the error markers and review mitigation protocols to lock down execution loopholes.', color: 'text-neon-amber' };
-    return { title: 'CRITICAL DISRUPT // MATRIX FAILURE', desc: 'Vulnerability indexing indicates high exploit openness. Threat loops require structural reinforcement. Re-run protocol simulators before field node exposure.', color: 'text-neon-red' };
+    if (score >= 9) return { 
+      title: 'EXCELLENT CLEARANCE', 
+      desc: 'Your cognitive filter arrays are successfully isolating high-sophistication adversarial patterns. Maintain this level of telemetry tracking on operational streams.', 
+      badge: 'EXPERT',
+      badgeClass: 'border-neon-green/50 text-neon-green bg-neon-green/8'
+    };
+    if (score >= 7) return { 
+      title: 'STABLE READINGS', 
+      desc: 'Logic engine processed most standard vulnerabilities successfully. Re-verify the error markers and review mitigation protocols to lock down execution loopholes.', 
+      badge: 'ANALYST',
+      badgeClass: 'border-neon-cyan/50 text-neon-cyan bg-neon-cyan/8'
+    };
+    return { 
+      title: 'MATRIX FAILURE', 
+      desc: 'Vulnerability indexing indicates high exploit openness. Threat loops require structural reinforcement. Re-run protocol simulators before field node exposure.', 
+      badge: 'TRAINEE',
+      badgeClass: 'border-text-muted/40 text-text-muted bg-text-muted/5'
+    };
   };
 
   return (
@@ -152,15 +167,18 @@ export function AssessmentMatrix() {
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
       >
-        <h2 className="font-orbitron text-3xl md:text-4xl text-white mb-4">
-          <span className="text-text-muted mr-3">[06]</span>ASSESSMENT MATRIX
+        <div className="font-mono text-xs tracking-[0.2em] text-neon-cyan uppercase mb-2">
+          [06] ASSESSMENT MATRIX
+        </div>
+        <h2 className="font-sans font-bold text-2xl md:text-4xl text-white mt-1 mb-3">
+          10 Verification Layers
         </h2>
         <p className="text-text-main text-lg">
-          10 verification layers. Validate logic engines, review instantly compiled feedback, and pull terminal evaluation metrics upon termination.
+          Validate logic engines, review instantly compiled feedback, and pull terminal evaluation metrics upon termination.
         </p>
       </motion.div>
 
-      <div className="bg-bg-card/90 backdrop-blur border border-text-muted/30 p-6 md:p-10 min-h-[600px] flex flex-col relative overflow-hidden shadow-2xl rounded-lg">
+      <div className="bg-bg-card border border-white/7 p-6 md:p-10 min-h-[500px] flex flex-col relative overflow-hidden shadow-sm rounded-lg">
         <AnimatePresence mode="wait">
           {!finished ? (
             <motion.div 
@@ -171,35 +189,37 @@ export function AssessmentMatrix() {
               transition={{ duration: 0.3 }}
               className="flex-1 flex flex-col"
             >
-              <div className="flex justify-between text-xs md:text-sm font-mono text-text-muted mb-6 tracking-widest uppercase">
-                <span>LAYER_INDEX {index + 1} / 10</span>
-                <span className="text-white">VERIFIED: {score}</span>
+              <div className="flex justify-between items-center text-xs md:text-sm font-mono tracking-widest uppercase mb-6">
+                <span className="bg-neon-cyan/10 border border-neon-cyan/30 text-neon-cyan font-mono text-xs rounded px-2 py-1">
+                  LAYER_INDEX {index + 1} / 10
+                </span>
+                <span className="text-text-muted">VERIFIED: <span className="text-neon-cyan">{score}</span></span>
               </div>
               
-              <div className="h-1 w-full bg-black/50 mb-10 border border-text-muted/20">
+              <div className="h-2 w-full bg-bg-card border border-white/7 rounded-full overflow-hidden mb-8">
                 <div 
-                  className="h-full bg-neon-cyan shadow-[0_0_10px_rgba(0,240,255,0.8)] transition-all duration-500 ease-out" 
+                  className="h-full bg-neon-cyan transition-all duration-500 ease-out" 
                   style={{ width: `${((index) / 10) * 100}%` }}
                 />
               </div>
 
               {q.context && (
-                <div className="bg-neon-amber/5 border-l-4 border-neon-amber p-4 mb-8 font-mono text-sm md:text-base text-neon-amber leading-relaxed shadow-[0_0_15px_rgba(255,170,0,0.1)]">
+                <div className="bg-bg-surface border-l-2 border-neon-amber/50 text-text-muted italic text-sm px-4 py-3 mb-6">
                   {q.context}
                 </div>
               )}
 
-              <h3 className="font-orbitron text-xl md:text-2xl text-white mb-8 leading-relaxed">
+              <h3 className="text-white font-sans font-semibold text-lg md:text-xl mb-6 leading-relaxed">
                 {q.q}
               </h3>
 
-              <div className="space-y-4 font-sans text-base md:text-lg flex-1">
+              <div className="space-y-3 font-sans flex-1">
                 {q.options.map((opt, i) => {
-                  let btnClass = "border-text-muted/30 hover:border-neon-cyan text-text-main hover:bg-bg-surface hover:text-white";
+                  let btnClass = "bg-bg-card border border-white/7 text-text-main text-sm rounded-lg px-4 py-3 text-left w-full hover:border-neon-cyan/35 hover:bg-neon-cyan/[0.03] transition-all cursor-pointer";
                   if (answeredIndex !== null) {
-                    if (i === q.correct) btnClass = "border-neon-green bg-neon-green/10 text-neon-green shadow-[0_0_15px_rgba(0,255,102,0.2)]";
-                    else if (i === answeredIndex) btnClass = "border-neon-red bg-neon-red/10 text-neon-red shadow-[0_0_15px_rgba(255,0,85,0.2)]";
-                    else btnClass = "border-text-muted/10 text-text-muted/40";
+                    if (i === q.correct) btnClass = "bg-neon-green/8 border border-neon-green/40 text-neon-green rounded-lg px-4 py-3 text-sm text-left w-full";
+                    else if (i === answeredIndex) btnClass = "bg-neon-red/8 border border-neon-red/40 text-neon-red rounded-lg px-4 py-3 text-sm text-left w-full";
+                    else btnClass = "border border-white/7 text-text-muted/40 bg-bg-card opacity-50 rounded-lg px-4 py-3 text-sm text-left w-full";
                   }
 
                   return (
@@ -207,9 +227,9 @@ export function AssessmentMatrix() {
                       key={i}
                       disabled={answeredIndex !== null}
                       onClick={() => handleAnswer(i)}
-                      className={`w-full text-left p-5 border rounded transition-all duration-300 ${btnClass}`}
+                      className={btnClass}
                     >
-                      <span className="font-mono mr-4 opacity-50 text-sm">[{String.fromCharCode(65 + i)}]</span>
+                      <span className="font-mono mr-3 opacity-50 text-xs">[{String.fromCharCode(65 + i)}]</span>
                       {opt}
                     </button>
                   );
@@ -221,17 +241,19 @@ export function AssessmentMatrix() {
                   <motion.div 
                     initial={{ opacity: 0, y: 10, height: 0 }}
                     animate={{ opacity: 1, y: 0, height: 'auto' }}
-                    className="mt-8 border-t border-text-muted/30 pt-8"
+                    className="mt-6"
                   >
-                    <div className={`font-mono text-sm md:text-base mb-3 tracking-widest font-bold ${answeredIndex === q.correct ? 'text-neon-green drop-shadow-[0_0_8px_rgba(0,255,102,0.8)]' : 'text-neon-red drop-shadow-[0_0_8px_rgba(255,0,85,0.8)]'}`}>
-                      {answeredIndex === q.correct ? 'VERIFIED MATCH' : 'ANOMALY DETECTED'}
+                    <div className="bg-bg-surface border-l-2 border-neon-cyan/50 text-text-main text-sm px-4 py-3 mb-6">
+                      <div className={`font-mono text-xs mb-2 tracking-widest font-bold ${answeredIndex === q.correct ? 'text-neon-green' : 'text-neon-red'}`}>
+                        {answeredIndex === q.correct ? 'VERIFIED MATCH' : 'ANOMALY DETECTED'}
+                      </div>
+                      <p className="leading-relaxed">{q.explain}</p>
                     </div>
-                    <p className="text-text-main text-base leading-relaxed mb-8 bg-bg-surface p-4 border-l-2 border-text-muted/50">{q.explain}</p>
                     <button 
                       onClick={nextLayer}
-                      className="px-8 py-3 border border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black font-mono transition-all tracking-widest uppercase font-bold shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)]"
+                      className="bg-neon-cyan text-[#05090f] px-6 py-2.5 text-sm rounded font-semibold transition-all hover:opacity-90 inline-flex items-center"
                     >
-                      Cycle Next Layer →
+                      Cycle Next Layer <span className="ml-2 font-mono">→</span>
                     </button>
                   </motion.div>
                 )}
@@ -243,23 +265,30 @@ export function AssessmentMatrix() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="flex-1 flex flex-col items-center justify-center text-center p-8 relative"
+              className="flex-1 flex flex-col items-center justify-center text-center p-8"
             >
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neon-cyan/10 via-transparent to-transparent -z-10" />
+              <div className="font-mono text-text-muted mb-6 tracking-widest text-xs uppercase">FINAL EVALUATION METRICS</div>
               
-              <div className="font-mono text-text-muted mb-4 tracking-widest uppercase">FINAL EVALUATION METRICS</div>
-              <div className="text-8xl md:text-9xl font-orbitron text-neon-cyan drop-shadow-[0_0_30px_rgba(0,240,255,0.6)] mb-10">
-                {score}/10
+              <div className="flex items-baseline gap-2 mb-6">
+                <span className="font-sans font-bold text-6xl text-white">{score}</span>
+                <span className="font-sans text-xl text-text-muted">/10</span>
               </div>
-              <h3 className={`font-mono text-2xl md:text-3xl mb-6 tracking-widest font-bold drop-shadow-md ${getResultInfo().color}`}>
+              
+              <div className={`font-mono text-sm px-3 py-1 rounded border mb-6 ${getResultInfo().badgeClass}`}>
+                {getResultInfo().badge}
+              </div>
+              
+              <h3 className="font-sans font-bold text-xl md:text-2xl mb-4 text-white">
                 {getResultInfo().title}
               </h3>
-              <p className="text-text-main max-w-2xl mx-auto mb-16 text-lg leading-relaxed">
+              
+              <p className="text-text-muted max-w-xl mx-auto mb-10 text-sm leading-relaxed">
                 {getResultInfo().desc}
               </p>
+              
               <button 
                 onClick={restart}
-                className="px-10 py-4 border-2 border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-black font-mono transition-all uppercase tracking-widest font-bold shadow-[0_0_20px_rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.7)]"
+                className="bg-neon-cyan text-[#05090f] px-6 py-2.5 text-sm rounded font-semibold hover:opacity-90 transition-all"
               >
                 Re-initialize Logic Matrix
               </button>

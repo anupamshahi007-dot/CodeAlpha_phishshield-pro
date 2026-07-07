@@ -4,15 +4,15 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  --color-bg-pure: #050508;
-  --color-bg-surface: #0a0c14;
-  --color-bg-card: #0f1322;
-  --color-neon-cyan: #00f0ff;
-  --color-neon-red: #ff0055;
-  --color-neon-green: #00ff66;
-  --color-neon-amber: #ffaa00;
-  --color-text-main: #c3ccdb;
-  --color-text-muted: #5a6982;
+  --color-bg-pure: #05090f;
+  --color-bg-surface: #0a1120;
+  --color-bg-card: #0f1a2e;
+  --color-neon-cyan: #38bdf8;
+  --color-neon-red: #f87171;
+  --color-neon-green: #4ade80;
+  --color-neon-amber: #fbbf24;
+  --color-text-main: #e2e8f0;
+  --color-text-muted: #64748b;
 
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'Share Tech Mono', monospace;
@@ -30,17 +30,16 @@ body {
   min-height: 100dvh;
 }
 
-/* Scanlines and Grid */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
   background: 
-    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(56, 189, 248, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
   pointer-events: none;
-  z-index: 100;
+  z-index: 0;
 }
 
 body::after {
@@ -54,10 +53,10 @@ body::after {
     rgba(0,0,0,0.1) 50%,
     rgba(0,0,0,0.1)
   );
-  background-size: 100% 4px;
+  background-size: 100% 3px;
   pointer-events: none;
   z-index: 101;
-  opacity: 0.3;
+  opacity: 0.12;
 }
 
 ::-webkit-scrollbar {
@@ -65,12 +64,46 @@ body::after {
 }
 ::-webkit-scrollbar-track {
   background: var(--color-bg-pure);
-  border-left: 1px solid rgba(0, 240, 255, 0.1);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 240, 255, 0.3);
+  background: rgba(56, 189, 248, 0.25);
   border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 240, 255, 0.6);
+  background: rgba(56, 189, 248, 0.45);
+}
+
+/* Professional Utilities */
+.card-border {
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.card-hover:hover {
+  border-color: rgba(56,189,248,0.35);
+  background-color: rgba(56,189,248,0.03);
+}
+.section-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-neon-cyan);
+}
+.btn-primary {
+  background: #0ea5e9;
+  color: #000;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: background 0.2s;
+}
+.btn-primary:hover {
+  background: #38bdf8;
+}
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--color-text-main);
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-ghost:hover {
+  border-color: rgba(56,189,248,0.4);
+  background: rgba(56,189,248,0.06);
 }

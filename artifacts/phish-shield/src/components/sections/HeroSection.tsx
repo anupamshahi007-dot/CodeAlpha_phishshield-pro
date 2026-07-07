@@ -2,45 +2,90 @@ import { motion } from 'framer-motion';
 
 export function HeroSection() {
   return (
-    <section id="hero" className="min-h-[100dvh] flex items-center justify-center relative px-6 pt-10">
-      <div className="absolute top-10 right-10 hidden md:block border-2 border-dashed border-neon-red text-neon-red px-4 py-2 font-mono font-bold rotate-[12deg] opacity-80 shadow-[0_0_15px_rgba(255,0,85,0.5)]">
-        TACTICAL SIMULATION
-      </div>
+    <section id="hero" className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
       
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-4xl w-full flex flex-col gap-6"
-      >
-        <span className="font-mono text-neon-cyan text-sm tracking-widest">
-          SYS_RECORD // FILE_07-PH
-        </span>
+      {/* Subtle background accent */}
+      <div style={{
+        position: 'absolute', top: 0, left: '50%',
+        transform: 'translateX(-50%)',
+        width: '800px', height: '500px',
+        background: 'radial-gradient(ellipse at top, rgba(14,165,233,0.07) 0%, transparent 65%)',
+        pointerEvents: 'none', zIndex: 0
+      }} />
+
+      <div className="relative z-10 text-center max-w-3xl mx-auto">
         
-        <h1 className="font-orbitron text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight text-white leading-[1.1]">
-          Breach Prevent:<br/>
-          <span className="text-neon-red drop-shadow-[0_0_15px_rgba(255,0,85,0.6)]">PHISH_SHIELD</span>
-        </h1>
-        
-        <p className="text-text-main max-w-2xl text-lg leading-relaxed border-l-2 border-neon-cyan/50 pl-6 mt-4">
-          Every tactical anomaly indexed here is derived from confirmed adversary patterns. Map the vectors, neutralize the indicators, and finalize the confirmation sequence to authenticate clearance.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 mt-8 font-mono">
-          <button 
-            onClick={() => document.getElementById('inspect')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-neon-cyan/10 border border-neon-cyan text-neon-cyan px-8 py-4 hover:bg-neon-cyan hover:text-black transition-all shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] uppercase tracking-wider font-bold"
+        {/* Module badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 mb-8 px-3 py-1.5 rounded-full border border-slate-700/60 bg-slate-800/40"
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-neon-cyan" />
+          <span className="font-mono text-xs tracking-widest text-text-muted uppercase">Security Awareness Training · Module 07</span>
+        </motion.div>
+
+        {/* Main heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="font-sans font-bold text-[clamp(2.8rem,6vw,4.5rem)] text-white leading-tight tracking-tight mb-4"
+        >
+          Phishing Awareness<br />
+          <span className="text-neon-cyan">Training Module</span>
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-text-muted text-lg leading-relaxed max-w-xl mx-auto mb-10"
+        >
+          Learn to identify phishing emails, fake websites, and social engineering tactics through interactive simulations and real-world case studies.
+        </motion.p>
+
+        {/* Stats row */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="flex items-center justify-center gap-8 mb-10 text-sm"
+        >
+          {[
+            { value: '7', label: 'Modules' },
+            { value: '10', label: 'Quiz Questions' },
+            { value: '2', label: 'Case Studies' },
+          ].map(stat => (
+            <div key={stat.label} className="text-center">
+              <div className="font-sans font-bold text-2xl text-white">{stat.value}</div>
+              <div className="font-mono text-xs text-text-muted tracking-wider uppercase mt-0.5">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="flex flex-wrap gap-4 justify-center"
+        >
+          <button
+            onClick={() => document.querySelector('#inspect')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-primary px-8 py-3 text-sm rounded font-sans font-semibold"
           >
-            Initialize Analysis →
+            Begin Training →
           </button>
-          <button 
-            onClick={() => document.getElementById('quiz')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-transparent border border-text-muted text-text-muted px-8 py-4 hover:text-text-main hover:border-text-main transition-all uppercase tracking-wider"
+          <button
+            onClick={() => document.querySelector('#quiz')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-ghost px-8 py-3 text-sm rounded font-sans"
           >
-            Bypass to Assessment
+            Skip to Assessment
           </button>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

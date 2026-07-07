@@ -30,32 +30,36 @@ export function MitigationProtocols() {
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
       >
-        <h2 className="font-orbitron text-3xl md:text-4xl text-white mb-4">
-          <span className="text-text-muted mr-3">[04]</span>MITIGATION PROTOCOLS
+        <div className="font-mono text-xs tracking-[0.2em] text-neon-cyan uppercase mb-2">
+          [04] MITIGATION PROTOCOLS
+        </div>
+        <h2 className="font-sans font-bold text-2xl md:text-4xl text-white mt-1 mb-3">
+          Execution Parameters
         </h2>
         <p className="text-text-main text-lg">
           Verify execution parameters prior to stream navigation. This sequence safely intercepts threat distributions before lateral mutation.
         </p>
       </motion.div>
 
-      <div className="bg-bg-card/80 backdrop-blur border border-text-muted/30 p-6 md:p-10 rounded-lg font-mono shadow-2xl relative z-10">
+      <div className="bg-bg-card border border-white/7 p-6 md:p-10 rounded-lg shadow-sm relative z-10">
         <div className="flex justify-between items-end mb-4">
-          <span className="text-neon-green tracking-widest uppercase font-bold drop-shadow-[0_0_8px_rgba(0,255,102,0.8)]">
+          <span className="text-neon-cyan font-mono text-xs tracking-widest uppercase font-bold">
             {checked.length} / 6 PROTOCOLS ACTIVE
           </span>
-          <span className="text-text-muted text-xs hidden sm:block">STATUS: {checked.length === 6 ? 'SECURED' : 'PENDING'}</span>
+          <span className={`text-xs hidden sm:block px-3 py-1 rounded-sm border ${checked.length === 6 ? 'bg-neon-green/8 border-neon-green/30 text-neon-green' : 'text-text-muted border-white/7'}`}>
+            STATUS: {checked.length === 6 ? 'SECURED' : 'PENDING'}
+          </span>
         </div>
         
-        <div className="h-2 w-full bg-black/80 overflow-hidden mb-10 border border-text-muted/20">
+        <div className="h-2 w-full bg-bg-card border border-white/7 rounded-full overflow-hidden mb-10">
           <motion.div 
-            className="h-full bg-neon-green shadow-[0_0_15px_#00ff66]"
+            className="h-full bg-neon-cyan transition-all duration-500 ease-out"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
           />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {PROTOCOLS.map((protocol, idx) => {
             const isChecked = checked.includes(protocol.id);
             return (
@@ -66,20 +70,20 @@ export function MitigationProtocols() {
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.4 }}
                 onClick={() => toggleCheck(protocol.id)}
-                className={`flex gap-4 p-5 border rounded cursor-pointer transition-all duration-300 ${
+                className={`flex gap-4 px-4 py-3 rounded-lg cursor-pointer transition-all duration-300 ${
                   isChecked 
-                    ? 'border-neon-green bg-neon-green/10 opacity-70 scale-[0.99]' 
-                    : 'border-text-muted/30 hover:border-neon-cyan/50 hover:bg-bg-surface'
+                    ? 'border border-neon-green/30 bg-neon-green/5' 
+                    : 'border border-white/7 bg-bg-card hover:border-neon-cyan/30 hover:bg-neon-cyan/[0.02]'
                 }`}
               >
-                <div className={`mt-0.5 w-6 h-6 border-2 flex-shrink-0 flex items-center justify-center transition-colors ${
-                  isChecked ? 'border-neon-green text-neon-green bg-neon-green/20' : 'border-text-muted/50 text-transparent'
+                <div className={`mt-0.5 w-4 h-4 rounded-full flex-shrink-0 flex items-center justify-center transition-colors ${
+                  isChecked ? 'bg-neon-green border-neon-green text-white text-[10px]' : 'border-2 border-text-muted/50 text-transparent'
                 }`}>
                   {isChecked && '✓'}
                 </div>
                 <div>
-                  <h3 className={`font-bold uppercase tracking-wider mb-2 transition-colors ${
-                    isChecked ? 'text-neon-green line-through' : 'text-white'
+                  <h3 className={`font-sans font-bold mb-1 transition-colors ${
+                    isChecked ? 'text-text-muted line-through' : 'text-text-main'
                   }`}>
                     {protocol.title}
                   </h3>
@@ -93,6 +97,16 @@ export function MitigationProtocols() {
             );
           })}
         </div>
+
+        {checked.length === 6 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-6 bg-neon-green/8 border border-neon-green/30 text-neon-green rounded-lg px-4 py-3 text-sm font-sans"
+          >
+            All protocols verified. Node optimization complete. Ready for operational streams.
+          </motion.div>
+        )}
       </div>
     </section>
   );

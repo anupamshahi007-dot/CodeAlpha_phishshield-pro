@@ -25,41 +25,44 @@ export function EmailInspector() {
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
       >
-        <h2 className="font-orbitron text-3xl md:text-4xl text-white mb-4">
-          <span className="text-text-muted mr-3">[01]</span>VECTOR INVESTIGATION
+        <div className="font-mono text-xs tracking-[0.2em] text-neon-cyan uppercase mb-2 section-label">
+          [01] Vector Investigation
+        </div>
+        <h2 className="font-sans font-bold text-2xl text-white mt-1 mb-3">
+          VECTOR INVESTIGATION
         </h2>
-        <p className="text-text-main max-w-3xl text-lg">
+        <p className="text-text-muted text-sm leading-relaxed max-w-3xl">
           This ingress payload breached perimeter nodes last quarter. Intercept the payload highlights to append telemetry indicators — isolate all 5 vulnerabilities.
         </p>
       </motion.div>
 
       <div className="grid lg:grid-cols-2 gap-10">
         {/* Email Frame */}
-        <div className="bg-bg-surface border border-text-muted/30 rounded-lg overflow-hidden flex flex-col shadow-2xl relative z-10">
-          <div className="bg-bg-card border-b border-text-muted/30 p-3 flex justify-between items-center font-mono text-xs shadow-md">
+        <div className="bg-bg-card border border-white/7 rounded-lg overflow-hidden flex flex-col relative z-10 card-border">
+          <div className="bg-bg-surface border-b border-white/6 px-4 py-3 flex justify-between items-center font-mono text-xs">
             <span className="text-text-muted">LOG_STREAM // INBOUND_SMTP</span>
-            <span className="text-neon-red flex items-center gap-2 drop-shadow-[0_0_8px_rgba(255,0,85,0.8)]">
+            <span className="text-neon-cyan flex items-center gap-2">
               <span className="animate-pulse">●</span> LIVE_PAYLOAD
             </span>
           </div>
           
-          <div className="p-6 md:p-8 flex flex-col gap-4 font-sans text-sm md:text-base bg-[#f4f4f5] text-[#18181b] flex-1">
-            <div className="border-b border-[#e4e4e7] pb-5 space-y-2">
+          <div className="flex flex-col font-sans text-sm bg-bg-card text-text-main flex-1 rounded-b-lg">
+            <div className="bg-bg-surface border-b border-white/6 px-4 py-3 space-y-2">
               <div>
-                <span className="text-[#71717a] mr-2 inline-block w-16">From:</span>
-                <span className="font-medium">IT Service Desk</span> &lt;
+                <span className="font-mono text-xs text-text-muted mr-2 inline-block w-16">From:</span>
+                <span className="font-mono text-xs text-text-main">IT Service Desk</span> &lt;
                 <Hotspot id={1} isFound={found.includes(1)} onClick={() => toggleHotspot(1)}>
                   helpdesk@corp-secure-support.com
                 </Hotspot>
                 &gt;
               </div>
               <div>
-                <span className="text-[#71717a] mr-2 inline-block w-16">To:</span>
-                node_user@internal_subnet.net
+                <span className="font-mono text-xs text-text-muted mr-2 inline-block w-16">To:</span>
+                <span className="font-mono text-xs text-text-main">node_user@internal_subnet.net</span>
               </div>
               <div className="pt-2 text-lg">
-                <span className="text-[#71717a] mr-2 font-normal text-base inline-block w-16">Subject:</span>
-                <span className="font-bold">URGENT: Your mailbox will be suspended in{' '}
+                <span className="font-mono text-xs text-text-muted mr-2 inline-block w-16">Subject:</span>
+                <span className="font-mono text-xs text-text-main font-bold">URGENT: Your mailbox will be suspended in{' '}
                   <Hotspot id={2} isFound={found.includes(2)} onClick={() => toggleHotspot(2)}>
                     2 hours
                   </Hotspot>
@@ -67,7 +70,7 @@ export function EmailInspector() {
               </div>
             </div>
 
-            <div className="py-6 space-y-5 leading-relaxed text-[#3f3f46]">
+            <div className="bg-bg-card text-text-main text-sm p-4 space-y-5 leading-relaxed">
               <p>Dear User,</p>
               <p>
                 Our system has detected unusual sign-in activity. To avoid permanent suspension of your mailbox, you must{' '}
@@ -82,23 +85,21 @@ export function EmailInspector() {
                 </Hotspot>
               </p>
               <p className="pt-4">Regards,<br/><span className="font-medium">IT Security Team</span></p>
-            </div>
-            
-            <div className="mt-auto pt-6 border-t border-[#e4e4e7]">
-              <Hotspot id={5} isFound={found.includes(5)} onClick={() => toggleHotspot(5)} className="inline-flex items-center gap-2 px-4 py-2 border border-[#d4d4d8] rounded-md bg-white hover:bg-[#f4f4f5] cursor-pointer shadow-sm">
-                📎 Voicemail_Transcript.html.zip
-              </Hotspot>
+              
+              <div className="mt-8 pt-6 border-t border-slate-800/60">
+                <Hotspot id={5} isFound={found.includes(5)} onClick={() => toggleHotspot(5)} className="px-4 py-2">
+                  📎 Voicemail_Transcript.html.zip
+                </Hotspot>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Evidence Panel */}
         <div className="flex flex-col gap-4">
-          <div className="bg-bg-card/80 backdrop-blur border border-neon-cyan/30 p-6 font-mono h-full flex flex-col relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-neon-cyan/5 blur-3xl -z-10" />
-            
-            <h3 className="text-neon-cyan text-xl mb-3 tracking-widest uppercase">Telemetry Indicator Log</h3>
-            <div className="text-text-muted mb-8 text-sm flex items-center gap-4 border-b border-text-muted/20 pb-4">
+          <div className="border border-white/7 bg-bg-card rounded-lg p-6 h-full flex flex-col relative overflow-hidden">
+            <h3 className="font-mono text-xs tracking-[0.2em] text-neon-cyan uppercase mb-3 section-label">Telemetry Indicator Log</h3>
+            <div className="text-text-muted mb-8 text-sm flex items-center gap-4 border-b border-slate-800/60 pb-4">
               <span>Progress:</span> 
               <span className="text-white text-base">[{found.length} / 5]</span> 
               <span>anomalies mapped</span>
@@ -113,17 +114,17 @@ export function EmailInspector() {
                       key={id}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="border-l-2 border-neon-cyan pl-4 py-2 bg-bg-surface/50"
+                      className="border-l-2 border-neon-cyan/40 pl-3 py-2 bg-bg-surface/50 rounded-r mb-2"
                     >
-                      <div className="text-neon-cyan font-bold text-sm tracking-wide mb-1">[{id}] {ev.title}</div>
-                      <div className="text-text-main text-sm leading-relaxed">{ev.desc}</div>
+                      <div className="font-mono text-xs text-text-muted mb-1">[{id}] {ev.title}</div>
+                      <div className="text-text-main text-sm">{ev.desc}</div>
                     </motion.div>
                   );
                 })}
               </AnimatePresence>
               
               {found.length === 0 && (
-                <div className="h-full flex items-center justify-center text-text-muted/50 text-sm animate-pulse">
+                <div className="h-full flex items-center justify-center text-text-muted text-sm italic">
                   &gt; Waiting for stream interaction...
                 </div>
               )}
@@ -134,9 +135,8 @@ export function EmailInspector() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-6 border border-neon-green text-neon-green bg-neon-green/10 p-4 text-center tracking-widest font-bold shadow-[0_0_15px_rgba(0,255,102,0.2)] relative overflow-hidden"
+                  className="mt-6 bg-neon-green/8 border border-neon-green/30 text-neon-green rounded px-3 py-2 text-sm text-center"
                 >
-                  <div className="absolute inset-0 bg-neon-green/10 animate-pulse" />
                   PAYLOAD ANOMALIES CAPTURED — THREAT ISOLATED
                 </motion.div>
               )}
@@ -152,18 +152,13 @@ function Hotspot({ id, isFound, onClick, children, className = '' }: any) {
   return (
     <span 
       onClick={onClick}
-      className={`relative inline-block cursor-pointer transition-all duration-300 ${
+      className={`relative transition-all duration-300 ${
         isFound 
-          ? 'bg-[#dcfce7] text-[#166534] border-b-2 border-[#16a34a]' 
-          : 'bg-[#fee2e2] hover:bg-[#fca5a5] text-[#991b1b] border-b-2 border-[#dc2626]'
+          ? 'inline border border-neon-green/50 bg-neon-green/8 rounded px-1 text-neon-green' 
+          : 'inline border border-text-muted/30 bg-text-muted/5 rounded px-1 cursor-pointer text-text-muted hover:border-neon-cyan/50 hover:text-text-main'
       } ${className}`}
     >
       {children}
-      <span className={`absolute -top-3 -right-3 w-5 h-5 flex items-center justify-center text-[10px] font-mono font-bold rounded-full text-white z-20 ${
-        isFound ? 'bg-[#16a34a] shadow-[0_0_8px_#16a34a]' : 'bg-[#dc2626] shadow-[0_0_8px_#dc2626] animate-pulse'
-      }`}>
-        {id}
-      </span>
     </span>
   );
 }

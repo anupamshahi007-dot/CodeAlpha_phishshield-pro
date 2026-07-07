@@ -11,7 +11,7 @@ const SECTIONS = [
 ];
 
 export function StickyNav() {
-  const [activeId, setActiveId] = useState('root');
+  const [activeId, setActiveId] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,16 +33,19 @@ export function StickyNav() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-bg-pure/80 backdrop-blur border-b border-neon-cyan/20 px-4 py-3 overflow-x-auto custom-scrollbar">
+    <nav 
+      className="sticky top-0 z-50 w-full bg-bg-pure/80 backdrop-blur px-4 py-3 overflow-x-auto"
+      style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', boxShadow: '0 1px 0 rgba(56,189,248,0.08)' }}
+    >
       <div className="max-w-7xl mx-auto flex gap-6 sm:gap-8">
         {SECTIONS.map((sec) => (
           <button
             key={sec.id}
             onClick={() => scrollTo(sec.id)}
-            className={`font-mono text-sm whitespace-nowrap transition-colors tracking-wide ${
+            className={`font-mono text-sm whitespace-nowrap transition-colors tracking-wide border-b-2 pb-1 ${
               activeId === sec.id
-                ? 'text-neon-cyan drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]'
-                : 'text-text-muted hover:text-text-main'
+                ? 'text-neon-cyan border-neon-cyan'
+                : 'text-text-muted hover:text-text-main border-transparent'
             }`}
           >
             {sec.label}

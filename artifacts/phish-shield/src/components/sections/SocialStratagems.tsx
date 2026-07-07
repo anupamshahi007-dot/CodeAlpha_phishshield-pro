@@ -48,10 +48,13 @@ export function SocialStratagems() {
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
       >
-        <h2 className="font-orbitron text-3xl md:text-4xl text-white mb-4">
-          <span className="text-text-muted mr-3">[03]</span>SOCIAL STRATAGEMS
+        <div className="font-mono text-xs tracking-[0.2em] text-neon-cyan uppercase mb-2 section-label">
+          [03] Social Stratagems
+        </div>
+        <h2 className="font-sans font-bold text-2xl text-white mt-1 mb-3">
+          SOCIAL STRATAGEMS
         </h2>
-        <p className="text-text-main max-w-3xl text-lg">
+        <p className="text-text-muted text-sm leading-relaxed max-w-3xl">
           Malicious actors optimize cognitive patterns rather than just brute forcing firewalls. Explode node fields below to read target telemetry.
         </p>
       </motion.div>
@@ -79,7 +82,7 @@ function FlipCard({ tactic, index }: { tactic: any, index: number }) {
       style={{ perspective: '1000px' }}
     >
       <div 
-        className="w-full h-full transition-transform duration-700 font-mono shadow-xl"
+        className="w-full h-full transition-transform duration-700"
         style={{ 
           transformStyle: 'preserve-3d', 
           transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)' 
@@ -87,27 +90,30 @@ function FlipCard({ tactic, index }: { tactic: any, index: number }) {
       >
         {/* Front */}
         <div 
-          className="absolute inset-0 bg-bg-card border border-text-muted/30 border-l-4 border-l-neon-cyan p-6 flex flex-col justify-between hover:bg-bg-surface hover:border-text-muted/60 transition-colors"
+          className="absolute inset-0 bg-bg-card border border-white/7 rounded-lg border-l-2 border-l-neon-cyan p-6 flex flex-col justify-between transition-all duration-200 hover:border-neon-cyan/30 hover:bg-neon-cyan/[0.02] card-border"
           style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
         >
-          <div className="text-neon-cyan font-bold uppercase tracking-widest text-lg">{tactic.title}</div>
-          <div className="text-text-muted whitespace-pre-line text-sm tracking-widest uppercase">
+          <div className="font-sans font-bold text-sm text-white flex items-center justify-between">
+            {tactic.title}
+            <span className="text-neon-cyan">✦</span>
+          </div>
+          <div className="font-mono text-neon-cyan whitespace-pre-line text-sm tracking-widest uppercase opacity-80">
             {tactic.front}
-            <div className="mt-4 text-xs text-neon-cyan/50 animate-pulse">&gt; Explode node...</div>
+            <div className="mt-4 font-mono text-xs text-text-muted/50">&gt; Explode node...</div>
           </div>
         </div>
 
         {/* Back */}
         <div 
-          className="absolute inset-0 bg-[#1f0a12] border border-neon-red/30 border-l-4 border-l-neon-red p-6 flex flex-col gap-4"
+          className="absolute inset-0 bg-bg-surface border border-white/7 rounded-lg border-l-2 border-l-neon-green p-6 flex flex-col gap-4"
           style={{ 
             backfaceVisibility: 'hidden', 
             WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)' 
           }}
         >
-          <div className="text-neon-red font-bold uppercase tracking-widest text-lg drop-shadow-[0_0_8px_rgba(255,0,85,0.8)]">{tactic.title}</div>
-          <div className="text-red-200/80 font-sans text-sm md:text-base leading-relaxed">{tactic.back}</div>
+          <div className="text-neon-green font-bold uppercase tracking-widest text-lg">{tactic.title}</div>
+          <div className="text-text-main text-sm leading-relaxed">{tactic.back}</div>
         </div>
       </div>
     </motion.div>
